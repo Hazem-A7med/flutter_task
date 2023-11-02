@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/bottom_nav_bar/view/bottom_nav_bar.dart';
-import 'package:flutter_task/home/controller/homeprovider.dart';
+import 'package:flutter_task/home/controller/categories_provider.dart';
+import 'package:flutter_task/home/controller/home_provider.dart';
 import 'package:flutter_task/home/view/widgets/bannar.dart';
 import 'package:flutter_task/home/view/widgets/categories_widget.dart';
 import 'package:flutter_task/home/view/widgets/items.dart';
@@ -17,8 +17,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    Future.delayed(
+      Duration.zero,
+      () async =>
+          Provider.of<CategoriesProvider>(context, listen: false).fetchData(),
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return   Consumer<HomeProvider>(
+    return Consumer<HomeProvider>(
       builder: (BuildContext context, provider, _) => Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -44,11 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const BannerWidget(),
-           const Items(),
-
-         if (provider.itemsIndex==0) const CategoriesWidget(),
-         if (provider.itemsIndex==1) const NoDataClass(type: 'services',),
-         if (provider.itemsIndex==2) const NoDataClass(type: 'orders',),
+          const Items(),
+          if (provider.itemsIndex == 0) const CategoriesWidget(),
+          if (provider.itemsIndex == 1)
+            const NoDataClass(
+              type: 'services',
+            ),
+          if (provider.itemsIndex == 2)
+            const NoDataClass(
+              type: 'orders',
+            ),
         ]),
       ),
     );

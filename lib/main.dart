@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/bottom_nav_bar/view/bottom_nav_bar.dart';
-import 'package:flutter_task/home/controller/homeprovider.dart';
+import 'package:flutter_task/home/controller/home_provider.dart';
 import 'package:flutter_task/home/view/home_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'home/controller/categories_provider.dart';
+
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (_) => HomeProvider(),
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => HomeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CategoriesProvider(),
+        ),
+      ],
+      child: const MyApp(),
     ),
-  ], child: const MyApp()));
+  );
 }
 
 class MyApp extends StatelessWidget {
