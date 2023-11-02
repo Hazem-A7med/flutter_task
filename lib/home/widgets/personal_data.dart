@@ -22,7 +22,7 @@ class PersonalData extends StatelessWidget {
           ),
         ),
         Image.asset(
-          'assets/Image-1.png',
+          'assets/images/Image-1.png',
           height: 25,
         )
       ],

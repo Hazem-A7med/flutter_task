@@ -6,13 +6,13 @@ class BannerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(decoration: BoxDecoration(color: Color(0xffFFF5F5),borderRadius: BorderRadius.circular(15)),
+          padding: const EdgeInsets.all(10),
+          child: Row(
             children: [
               const Expanded(
                 flex: 10,
@@ -39,41 +39,43 @@ class BannerWidget extends StatelessWidget {
               Expanded(
                 flex: 8,
                 child: Image.asset(
-                  'assets/02 Man Presentation Miniature Building.png',
+                  'assets/images/02 Man Presentation Miniature Building.png',
                 ),
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 10,
-                width: 10,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey.withOpacity(.4),
-                ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 10,
+              width: 10,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.withOpacity(.4),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
-                child: RedButton(width: 40, height: 10),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.0),
+              child: RedButton(width: 40, height: 10),
+            ),
+            Container(
+              height: 10,
+              width: 10,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.withOpacity(.4),
               ),
-              Container(
-                height: 10,
-                width: 10,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey.withOpacity(.4),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+            const SizedBox(
+            height: 30,),
+      ],
     );
   }
 }

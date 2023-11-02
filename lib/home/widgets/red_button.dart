@@ -8,11 +8,13 @@ class RedButton extends StatelessWidget {
     this.height,
     this.onTab,
     this.color,
+    this.textColor,
   }) : super(key: key);
   final String? text;
   final double? width;
   final double? height;
   final Color? color;
+  final Color? textColor;
   final Function()? onTab;
 
   @override
@@ -31,10 +33,10 @@ class RedButton extends StatelessWidget {
         child: Center(
           child: Text(
             text ?? '',
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: Colors.white,
+              color: textColor ?? Colors.white,
             ),
           ),
         ),
