@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/home/view/bottom_nav_bar.dart';
-import 'package:flutter_task/home/widgets/bannar.dart';
-import 'package:flutter_task/home/widgets/categories_widget.dart';
-import 'package:flutter_task/home/widgets/items.dart';
-import 'package:flutter_task/home/widgets/personal_data.dart';
+import 'package:flutter_task/bottom_nav_bar/view/bottom_nav_bar.dart';
+import 'package:flutter_task/home/controller/homeprovider.dart';
+import 'package:flutter_task/home/view/widgets/bannar.dart';
+import 'package:flutter_task/home/view/widgets/categories_widget.dart';
+import 'package:flutter_task/home/view/widgets/items.dart';
+import 'package:flutter_task/home/view/widgets/no_data.dart';
+import 'package:flutter_task/home/view/widgets/personal_data.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,19 +18,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffFAFAFA),
-      appBar: AppBar(
-        title: const Text(
-          'Home',
-        ),
-        centerTitle: true,
-      ),
-      body: const Padding(
-        padding: EdgeInsets.all(10.0),
+    return   Consumer<HomeProvider>(
+      builder: (BuildContext context, provider, _) => Padding(
+        padding: const EdgeInsets.all(10.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          PersonalData(),
-          Padding(
+          const PersonalData(),
+          const Padding(
             padding: EdgeInsets.only(
               top: 30.0,
               bottom: 3,
@@ -40,43 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Text(
+          const Text(
             'Explore diverse real estate services for all your needs: property management, construction, insurance and more in one place.',
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w300,
             ),
           ),
-          BannerWidget(),
-          Items(),
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Categories View',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ),
-                ),
-                Text(
-                  'see all',
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          CategoriesWidget(),
+          const BannerWidget(),
+           const Items(),
+
+         if (provider.itemsIndex==0) const CategoriesWidget(),
+         if (provider.itemsIndex==1) const NoDataClass(type: 'services',),
+         if (provider.itemsIndex==2) const NoDataClass(type: 'orders',),
         ]),
-      ),bottomNavigationBar: const BottomNavBar(),
+      ),
     );
   }
 }

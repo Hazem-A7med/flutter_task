@@ -8,11 +8,12 @@ class RedButton extends StatelessWidget {
     this.height,
     this.onTab,
     this.color,
-    this.textColor,
+    this.textColor, this.fontSize,
   }) : super(key: key);
   final String? text;
   final double? width;
   final double? height;
+  final double? fontSize;
   final Color? color;
   final Color? textColor;
   final Function()? onTab;
@@ -34,7 +35,7 @@ class RedButton extends StatelessWidget {
           child: Text(
             text ?? '',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: (fontSize==null)?16:fontSize,
               fontWeight: FontWeight.w500,
               color: textColor ?? Colors.white,
             ),

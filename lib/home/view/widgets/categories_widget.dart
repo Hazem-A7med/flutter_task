@@ -15,7 +15,31 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
           padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
           shrinkWrap: true,
           physics: const AlwaysScrollableScrollPhysics(),
-          itemBuilder: (context, index) => Card(
+          itemBuilder: (context, index) => (index==0)?Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Categories View',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  'see all',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ):Card(
               elevation: .4,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -25,13 +49,13 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                 child: Row(
                   children: [
                     Image.asset(
-                        'assets/images/${listItems[index].imageName}.png',
+                        'assets/images/${listItems[index-1].imageName}.png',
                         width: 25),
                     const SizedBox(
                       width: 10,
                     ),
                     Text(
-                      listItems[index].title,
+                      listItems[index-1].title,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -49,7 +73,7 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
           separatorBuilder: (context, index) => const SizedBox(
                 height: 5,
               ),
-          itemCount: listItems.length),
+          itemCount: (listItems.length)+1),
     );
   }
 }

@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task/bottom_nav_bar/view/bottom_nav_bar.dart';
+import 'package:flutter_task/home/controller/homeprovider.dart';
 import 'package:flutter_task/home/view/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (_) => HomeProvider(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +25,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home:  HomeScreen(),
+      home: const BottomNavBar(),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/home/widgets/red_button.dart';
+import 'package:flutter_task/home/view/widgets/red_button.dart';
 
 class BannerWidget extends StatelessWidget {
   const BannerWidget({Key? key}) : super(key: key);
@@ -10,11 +10,11 @@ class BannerWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(decoration: BoxDecoration(color: Color(0xffFFF5F5),borderRadius: BorderRadius.circular(15)),
+        Container(decoration: BoxDecoration(color: const Color(0xffFFF5F5),borderRadius: BorderRadius.circular(15)),
           padding: const EdgeInsets.all(10),
           child: Row(
             children: [
-              const Expanded(
+               const Expanded(
                 flex: 10,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
